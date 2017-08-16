@@ -291,11 +291,11 @@ void add_keytab_entries(msktutil_flags *flags)
                 continue;
             }
 
-            VERBOSE("Adding %s (kvno=%d, enctype=%d) to keytab", add_principal.c_str(), sam->kvno(), sam->enctype());
+            VERBOSE("Adding %s (kvno=%d, enctype=%d, timestamp=%d) to keytab", add_principal.c_str(), sam->kvno(), sam->enctype(), sam->timestamp());
 
             KRB5Principal princ(add_principal);
             krb5_keyblock keyblock(sam->keyblock());
-            keytab.addEntry(princ, sam->kvno(), keyblock);
+            keytab.addEntry(princ, sam->kvno(), keyblock, sam->timestamp());
         }
     }
 }

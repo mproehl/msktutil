@@ -64,7 +64,7 @@ public:
         }
     }
 
-    void addEntry(const KRB5Principal &princ, krb5_kvno kvno, krb5_keyblock &keyblock);
+    void addEntry(const KRB5Principal &princ, krb5_kvno kvno, krb5_keyblock &keyblock, krb5_timestamp timestamp = 0);
     void addEntry(const KRB5Principal &princ, krb5_kvno kvno, krb5_enctype enctype,
                   const std::string &password, const std::string &salt);
 

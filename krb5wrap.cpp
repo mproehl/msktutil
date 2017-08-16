@@ -156,7 +156,8 @@ std::string KRB5Principal::name()
 
 void KRB5Keytab::addEntry(const KRB5Principal &princ,
                           krb5_kvno kvno,
-                          krb5_keyblock &keyblock)
+                          krb5_keyblock &keyblock,
+                          krb5_timestamp timestamp )
 {
     krb5_keytab_entry entry;
 
@@ -167,6 +168,9 @@ void KRB5Keytab::addEntry(const KRB5Principal &princ,
 #else
     entry.key = keyblock;
 #endif
+    if (timestamp != 0) {
+        entry.timestamp = timestamp;
+    }
     // avoid duplicate entries
     (void) krb5_kt_remove_entry(g_context,
                                 m_keytab,
